@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400677383192",
+    "project_id": "training-booking-app",
+    "storage_bucket": "training-booking-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400677383192:android:dde7c5cacf6034b9d2276d",
+        "android_client_info": {
+          "package_name": "com.example.training_booking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwxmgeeArJysb9xNbiItlBzR2spVbWe0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
