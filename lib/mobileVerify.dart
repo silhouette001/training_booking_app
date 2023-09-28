@@ -1,10 +1,35 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:training_booking_app/utils.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class Scene extends StatelessWidget {
+import 'confirmation.dart';
+
+class phnNum extends StatefulWidget {
+  @override
+  State<phnNum> createState() => _phnNumState();
+}
+
+class _phnNumState extends State<phnNum> {
+  final phnController = TextEditingController();
+
+  late DatabaseReference dbRef;
+
+  @override
+  void initState(){
+    super.initState();
+//dbRef = FirebaseDatabase.instance.ref().child('Booking');
+    dbRef = FirebaseDatabase.instanceFor(
+          app: Firebase.app(),
+          databaseURL:
+              'https://training-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/')
+      .ref("verification");
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 375;
@@ -140,6 +165,7 @@ class Scene extends StatelessWidget {
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 8.0),
                                   child: TextField(
+                                    controller: phnController,
                                     maxLength:
                                         10, // Allow exactly 10 characters
                                     decoration: InputDecoration(
@@ -208,7 +234,16 @@ class Scene extends StatelessWidget {
               width: 328 * fem,
               height: 48 * fem,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Map<String, String>Booking={
+                      'phn_no': phnController.text,
+                    };
+                    dbRef.push().set(Booking);
+    //                 Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => confirm()),
+    // );
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFF243836),
                   //height: 1.2125 * ffem / fem,
