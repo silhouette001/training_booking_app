@@ -6,12 +6,12 @@ import 'package:training_booking_app/utils.dart';
 import 'dart:async';
 import 'package:training_booking_app/otp.dart';
 
-class Scene extends StatefulWidget {
+class confirm extends StatefulWidget {
   @override
   _OTPVerificationScreenState createState() => _OTPVerificationScreenState();
 }
 
-class _OTPVerificationScreenState extends State<Scene> {
+class _OTPVerificationScreenState extends State<confirm> {
   int _counter = 120; // 2 minutes in seconds
   late Timer _timer;
   bool _timerExpired = false;
@@ -64,7 +64,7 @@ class _OTPVerificationScreenState extends State<Scene> {
     super.dispose();
   }
 
-//class Scene extends StatelessWidget {
+//class confirm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 360;

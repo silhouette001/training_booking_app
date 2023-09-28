@@ -5,7 +5,7 @@ import 'package:training_booking_app/firebase_options.dart';
 //import 'package:training_booking_app/register.dart';
 import 'package:training_booking_app/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:training_booking_app/bookingPage.dart';
+import 'package:training_booking_app/BookingPage.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 void main() async {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: SingleChildScrollView(
-          child: Scene(),
+          child: Booking(),
         ),
       ),
     );
