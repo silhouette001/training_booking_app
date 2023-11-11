@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -6,33 +7,41 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:training_booking_app/utils.dart';
 
-class Scene extends StatefulWidget {
+import 'main.dart';
+import 'mobileVerify.dart';
+
+class Booking extends StatefulWidget {
   @override
-  State<Scene> createState() => _SceneState();
-}
-final nameController = TextEditingController();
-final ageController = TextEditingController();
-final genderController = TextEditingController();
-final mailController = TextEditingController();
-final addressController = TextEditingController();
-final instituteController = TextEditingController();
-
-late DatabaseReference dbRef;
-
-@override
-void initState(){
-  initState();
-  dbRef = FirebaseDatabase.instance.ref().child('Booking');
+  State<Booking> createState() => _BookingState();
 }
 
-class _SceneState extends State<Scene> {
+class _BookingState extends State<Booking> {
+  final nameController = TextEditingController();
+  final ageController = TextEditingController();
+  final genderController = TextEditingController();
+  final mailController = TextEditingController();
+  final addressController = TextEditingController();
+  final instituteController = TextEditingController();
+
+  late DatabaseReference dbRef;
+
+  @override
+  void initState() {
+    super.initState();
+//dbRef = FirebaseDatabase.instance.ref().child('Booking');
+    dbRef = FirebaseDatabase.instanceFor(
+            app: Firebase.app(),
+            databaseURL:
+                'https://training-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app/')
+        .ref("Booking");
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 360;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    //final nameController = TextEditingController();
-    
+
     return Container(
       width: double.infinity,
       child: Container(
@@ -72,7 +81,8 @@ class _SceneState extends State<Scene> {
                     child: Container(
                       height: 44 * fem,
                       child: TextField(
-                        controller: nameController,   //nameController.text=(has the input)
+                        controller:
+                            nameController, //nameController.text=(has the input)
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -87,11 +97,11 @@ class _SceneState extends State<Scene> {
                           ),
                         ),
                         style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 15 * fem,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff252525),
-                                    ),
+                          fontFamily: 'Inter',
+                          fontSize: 15 * fem,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff252525),
+                        ),
                       ),
                     ),
                   ),
@@ -105,7 +115,7 @@ class _SceneState extends State<Scene> {
                         height: 44 * fem,
                         child: TextField(
                           controller: ageController,
-                          maxLength:3,
+                          maxLength: 3,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -120,13 +130,12 @@ class _SceneState extends State<Scene> {
                             ),
                           ),
                           keyboardType: TextInputType.number,
-                          
                           style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 15 * fem,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff252525),
-                                      ),
+                            fontFamily: 'Inter',
+                            fontSize: 15 * fem,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff252525),
+                          ),
                         ),
                       ),
                     ),
@@ -139,7 +148,7 @@ class _SceneState extends State<Scene> {
                     child: Container(
                       height: 44 * fem,
                       child: TextField(
-                        controller: genderController,   
+                        controller: genderController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -154,11 +163,11 @@ class _SceneState extends State<Scene> {
                           ),
                         ),
                         style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 15 * fem,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff252525),
-                                    ),
+                          fontFamily: 'Inter',
+                          fontSize: 15 * fem,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff252525),
+                        ),
                       ),
                     ),
                   ),
@@ -170,7 +179,8 @@ class _SceneState extends State<Scene> {
                     child: Container(
                       height: 44 * fem,
                       child: TextField(
-                        controller: mailController,   //nameController.text=(has the input)
+                        controller:
+                            mailController, //nameController.text=(has the input)
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -185,11 +195,11 @@ class _SceneState extends State<Scene> {
                           ),
                         ),
                         style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 15 * fem,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff252525),
-                                    ),
+                          fontFamily: 'Inter',
+                          fontSize: 15 * fem,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff252525),
+                        ),
                       ),
                     ),
                   ),
@@ -216,11 +226,11 @@ class _SceneState extends State<Scene> {
                           ),
                         ),
                         style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 15 * fem,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff252525),
-                                    ),
+                          fontFamily: 'Inter',
+                          fontSize: 15 * fem,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff252525),
+                        ),
                       ),
                     ),
                   ),
@@ -232,11 +242,13 @@ class _SceneState extends State<Scene> {
                     child: Container(
                       height: 44 * fem,
                       child: TextField(
-                        controller: instituteController,   //nameController.text=(has the input)
+                        controller:
+                            instituteController, //nameController.text=(has the input)
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: 'സ്ഥാപനം തിരഞ്ഞെടുക്കുക', // Placeholder text
+                          hintText:
+                              'സ്ഥാപനം തിരഞ്ഞെടുക്കുക', // Placeholder text
                           hintStyle: TextStyle(
                             color: Colors.grey,
                           ),
@@ -247,11 +259,11 @@ class _SceneState extends State<Scene> {
                           ),
                         ),
                         style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 15 * fem,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff252525),
-                                    ),
+                          fontFamily: 'Inter',
+                          fontSize: 15 * fem,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xff252525),
+                        ),
                       ),
                     ),
                   ),
@@ -266,15 +278,19 @@ class _SceneState extends State<Scene> {
               height: 48 * fem,
               child: ElevatedButton(
                 onPressed: () {
-                  Map<String, String>Booking={
+                  Map<String, String> Booking = {
                     'name': nameController.text,
-                    'age' :ageController.text,
-                    'gender' : genderController.text,
-                    'email' : mailController.text,
-                    'address' : addressController.text,
-                    'intitute' : instituteController.text, 
+                    'age': ageController.text,
+                    'gender': genderController.text,
+                    'email': mailController.text,
+                    'address': addressController.text,
+                    'institute': instituteController.text,
                   };
                   dbRef.push().set(Booking);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => phnNum()),
+                  // );
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Color(0xFF243836), alignment: Alignment.center
@@ -302,5 +318,6 @@ class _SceneState extends State<Scene> {
         ),
       ),
     );
+    //);
   }
 }

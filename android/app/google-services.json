@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "400677383192",
+    "firebase_url": "https://training-booking-app-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "training-booking-app",
     "storage_bucket": "training-booking-app.appspot.com"
   },
