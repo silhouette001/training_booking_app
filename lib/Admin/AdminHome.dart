@@ -2,17 +2,76 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:training_booking_app/Admin/courseadd.dart';
+import 'package:training_booking_app/institutesignin.dart';
+import 'package:training_booking_app/main.dart';
 import 'package:training_booking_app/utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Scene extends StatelessWidget {
+class Admin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 360;
+    double baseWidth = 355;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return Scaffold(
+      bottomNavigationBar: Container(
+        height: 60,
+        child: BottomNavigationBar(
+          backgroundColor: Color(0xfff1eaea),
+          elevation: 0,
+          type: BottomNavigationBarType.fixed, // Set the type to fixed
+
+          onTap: (index) {
+            if (index == 0) {
+              logout(context);
+            }
+            if (index == 1) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyApp(),
+                  ));
+            }
+
+            if (index == 2) {
+              Navigator.of(context).pop();
+            }
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.logout,
+              ),
+              label: 'Logout',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/vector-qTX.png',
+                width: 30,
+                height: 30,
+                color: Color.fromRGBO(77, 119, 34, 1),
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/vector-Vc5.png',
+                width: 30,
+                height: 30,
+                color: Color.fromRGBO(77, 119, 34, 1),
+              ),
+              label: 'Back',
+            ),
+          ],
+          selectedItemColor: Color.fromRGBO(77, 119, 34, 1),
+          unselectedItemColor: Color.fromRGBO(77, 119, 34, 1),
+        ),
+      ),
+      body: SingleChildScrollView(
+       child: Container(
       width: double.infinity,
-      child: Container(
+        child: Container(
         // adminspageo13 (100:1527)
         width: double.infinity,
         decoration: BoxDecoration (
@@ -25,7 +84,7 @@ class Scene extends StatelessWidget {
               // autogroup4rzdv5f (5CSKdCAmQYBMJRsDrP4rZd)
               // padding: EdgeInsets.fromLTRB(165.99*fem, 240.66*fem, 119.56*fem, 181.1*fem),
               // width: double.infinity,
-              height: 300.76*fem,
+              height: 350.76*fem,
               decoration: BoxDecoration (
                 color: Color(0xffd9d9d9),
                 borderRadius: BorderRadius.circular(29*fem),
@@ -33,7 +92,7 @@ class Scene extends StatelessWidget {
                   fit: BoxFit.cover,
 
                   image: AssetImage (
-                    'assets/images/AdminWelcomeImg.png',
+                    'assets/rectangle-388-bg.png',
                     
                   ),
                 ), 
@@ -53,7 +112,7 @@ class Scene extends StatelessWidget {
                         width: 25*fem,
                         height: 19.44*fem,
                         child: Image.asset(
-                          'assets/icons/homeIcon.png',
+                          'assets/vector-JVw.png',
                           width: 25*fem,
                           height: 19.44*fem,
                         ),
@@ -64,7 +123,7 @@ class Scene extends StatelessWidget {
                     // welcomeQ9F (103:1554)
                     margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 21*fem, 0*fem),
                     child: Text(
-                      'Welcome\n',
+                      'Welcome',
                       style: safeGoogleFont (
                         'Inria Serif',
                         fontSize: 60*ffem,
@@ -231,7 +290,7 @@ class Scene extends StatelessWidget {
                           ),
                           child:InkWell(
                             onTap: () {
-                              print(" Add course");
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => CourseFormScreen()));
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -239,10 +298,10 @@ class Scene extends StatelessWidget {
                                 Container(
                                   // vectorrau (103:1561)
                                   margin: EdgeInsets.fromLTRB(1*fem, 0*fem, 0*fem, 14*fem),
-                                  width: 45*fem,
-                                  height: 43*fem,
+                                  width: 40*fem,
+                                  height: 15*fem,
                                   child: Image.asset(
-                                    'assets/icons/plusIcon.png',
+                                    'assets/vector-C8H.png',
                                     width: 45*fem,
                                     height: 43*fem,
                                   ),
@@ -329,9 +388,9 @@ class Scene extends StatelessWidget {
                                   // vectorrau (103:1561)
                                   margin: EdgeInsets.fromLTRB(1*fem, 0*fem, 0*fem, 14*fem),
                                   width: 32*fem,
-                                  height: 43*fem,
+                                  height: 15*fem,
                                   child: Image.asset(
-                                    'assets/icons/fileIcon.png',
+                                    'assets/vector-CW5.png',
                                     width: 32*fem,
                                     height: 43*fem,
                                   ),
@@ -402,6 +461,18 @@ class Scene extends StatelessWidget {
           ],
         ),
       ),
-          );
+          ),
+    ),
+    );
   }
+}
+Future<void> logout(BuildContext context) async {
+  CircularProgressIndicator();
+  await FirebaseAuth.instance.signOut();
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => Loginpage(),
+    ),
+  );
 }

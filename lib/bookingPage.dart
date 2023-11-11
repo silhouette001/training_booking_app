@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:livestock_app/utils.dart';
+import 'package:training_booking_app/utils.dart';
 
 class Scene extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class _SceneState extends State<Scene> {
                   EdgeInsets.fromLTRB(0 * fem, 0 * fem, 147 * fem, 70.5 * fem),
               child: Text(
                 'ബുക്കിംഗ്',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Inter',
                   fontSize: 30 * ffem,
                   fontWeight: FontWeight.w700,
@@ -286,7 +286,7 @@ class _SceneState extends State<Scene> {
                     child: Text(
                       'അടുത്തത്\n\n',
                       //textAlign: TextAlign.end,
-                      style: SafeGoogleFont(
+                      style: safeGoogleFont(
                         'Montserrat',
                         fontSize: 17 * ffem,
                         fontWeight: FontWeight.w500,

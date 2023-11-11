@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:training_booking_app/institutesignin.dart';
 import 'package:training_booking_app/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 // import 'model.dart';
 
 class Register extends StatefulWidget {

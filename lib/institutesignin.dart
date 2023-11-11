@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:training_booking_app/Admin/AdminHome.dart';
 import 'package:training_booking_app/categories.dart';
 import 'package:training_booking_app/institutions.dart';
 import 'package:training_booking_app/register.dart';
@@ -238,7 +239,7 @@ class _LoginpageState extends State<Loginpage>{
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) =>  Scene1(),
+              builder: (context) =>  Admin(),
             ),
           );
         }
